@@ -1,1 +1,3 @@
 Defect ID,Summary,Reproduction / Test Case,Severity,Priority,Status,Assignee,Date Updated,Fix Reference,Verification Evidence
+DEF-001,First pending task is omitted,TC-404: create tasks 1 and 3 unfinished and task 2 completed; get_pending_tasks returns only task 3,Not triaged,Not triaged,New,Unassigned,2026-10-05,None,test-results-before-fixes.txt
+DEF-002,Empty task list causes division by zero,TC-406: call average_priority with an empty list; ZeroDivisionError occurs instead of returning 0,Not triaged,Not triaged,New,Unassigned,2026-10-05,None,test-results-before-fixes.txt
