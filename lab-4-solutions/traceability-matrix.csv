@@ -1,0 +1,9 @@
+Requirement ID,Requirement Description,Test Case ID(s),Test Level,Status
+REQ-001,Add a task with its supplied title and default or specified values,TC-401,Unit,Not Run
+REQ-002,Complete an existing task by ID,TC-402,Unit,Not Run
+REQ-003,Return false for a missing task ID without changing tasks,TC-403,Unit,Not Run
+REQ-004,Return all unfinished tasks including the first list item,TC-404,Unit,Not Run
+REQ-005,Calculate mean priority and return 0 for an empty list,TC-405; TC-406,Unit,Not Run
+REQ-006,Find the first exact title match or return None,TC-407; TC-408,Unit,Not Run
+REQ-007,Remove an existing task and preserve all other tasks,TC-409,Unit,Not Run
+REQ-008,Save and reload tasks and handle a missing data file,TC-410; TC-411,Unit,Not Run
