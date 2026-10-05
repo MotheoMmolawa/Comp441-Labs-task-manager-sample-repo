@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Manager — Lab 5</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      color: #222;
+      margin: 0;
+      padding: 30px 15px;
+    }
+
+    main {
+      max-width: 650px;
+      margin: auto;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: bold;
+    }
+
+    input {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #888;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 9px 12px;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    #error-message {
+      color: #b00020;
+      min-height: 20px;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    .task-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .task-title {
+      display: block;
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .task-status {
+      display: block;
+      margin-top: 5px;
+      color: #555;
+    }
+
+    .task-item.done .task-title {
+      text-decoration: line-through;
+    }
+
+    .delete-task {
+      margin-left: 8px;
+      color: #b00020;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1>Task Manager</h1>
+    <p>Add a task, mark it complete, or remove it.</p>
+
+    <form id="task-form" novalidate>
+      <label for="task-title">Task title</label>
+      <input id="task-title" type="text" autocomplete="off">
+
+      <button id="add-task" type="submit">Add task</button>
+      <p id="error-message" role="alert"></p>
+    </form>
+
+    <label for="search-tasks">Search tasks</label>
+    <input id="search-tasks" type="search" autocomplete="off">
+
+    <p id="task-count" aria-live="polite">Total tasks: 0</p>
+    <ul id="task-list" aria-label="Tasks"></ul>
+  </main>
+
+  <script>
+    const form = document.getElementById("task-form");
+    const titleInput = document.getElementById("task-title");
+    const errorMessage = document.getElementById("error-message");
+    const searchInput = document.getElementById("search-tasks");
+    const taskList = document.getElementById("task-list");
+    const taskCount = document.getElementById("task-count");
+
+    // Update the total number of tasks, including hidden search results.
+    function updateCount() {
+      taskCount.textContent = `Total tasks: ${taskList.children.length}`;
+    }
+
+    // Show tasks whose titles contain the search text.
+    function filterTasks() {
+      const searchText = searchInput.value.trim().toLowerCase();
+
+      for (const item of taskList.children) {
+        const title = item.querySelector(".task-title").textContent;
+        item.hidden = !title.toLowerCase().includes(searchText);
+      }
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const title = titleInput.value.trim();
+
+      // Reject empty titles and titles containing only spaces.
+      if (title === "") {
+        errorMessage.textContent = "Please enter a task title.";
+        return;
+      }
+
+      errorMessage.textContent = "";
+
+      const item = document.createElement("li");
+      item.className = "task-item";
+
+      const titleText = document.createElement("span");
+      titleText.className = "task-title";
+      titleText.textContent = title;
+
+      const statusText = document.createElement("span");
+      statusText.className = "task-status";
+      statusText.textContent = "Pending";
+
+      const completeButton = document.createElement("button");
+      completeButton.type = "button";
+      completeButton.className = "complete-task";
+      completeButton.textContent = "Complete";
+
+      completeButton.addEventListener("click", function () {
+        const completed = item.classList.toggle("done");
+        statusText.textContent = completed ? "Completed" : "Pending";
+        completeButton.textContent = completed ? "Undo" : "Complete";
+      });
+
+      const deleteButton = document.createElement("button");
+      deleteButton.type = "button";
+      deleteButton.className = "delete-task";
+      deleteButton.textContent = "Delete";
+
+      deleteButton.addEventListener("click", function () {
+        item.remove();
+        updateCount();
+      });
+
+      item.append(titleText, statusText, completeButton, deleteButton);
+      taskList.appendChild(item);
+
+      titleInput.value = "";
+      titleInput.focus();
+
+      updateCount();
+      filterTasks();
+    });
+
+    searchInput.addEventListener("input", filterTasks);
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "TC501-add-task",
+    "action": "add",
+    "setup_tasks": [],
+    "title": "Write report",
+    "expected_titles": ["Write report"],
+    "expected_count": 1,
+    "expected_status": "Pending"
+  },
+  {
+    "id": "TC502-reject-blank-title",
+    "action": "reject_blank",
+    "setup_tasks": [],
+    "title": "   ",
+    "expected_titles": [],
+    "expected_count": 0,
+    "expected_error": "Please enter a task title."
+  },
+  {
+    "id": "TC503-complete-task",
+    "action": "complete",
+    "setup_tasks": ["Read notes"],
+    "target": "Read notes",
+    "expected_titles": ["Read notes"],
+    "expected_count": 1,
+    "expected_status": "Completed"
+  },
+  {
+    "id": "TC504-delete-task",
+    "action": "delete",
+    "setup_tasks": ["Write report", "Read notes"],
+    "target": "Write report",
+    "expected_titles": ["Read notes"],
+    "expected_count": 1
+  },
+  {
+    "id": "TC505-search-tasks",
+    "action": "search",
+    "setup_tasks": ["Write report", "Read notes"],
+    "search_text": "rEaD",
+    "expected_titles": ["Read notes"],
+    "expected_count": 2
+  }
+]
