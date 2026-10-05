@@ -45,17 +45,25 @@ def complete_task(tasks, task_id):
 def get_pending_tasks(tasks):
     """Return all tasks that are not yet done."""
     pending = []
-    for i in range(1, len(tasks)):
-        if not tasks[i]["done"]:
-            pending.append(tasks[i])
+
+    # Examine every task, including the first one.
+    for task in tasks:
+        if not task["done"]:
+            pending.append(task)
+
     return pending
 
 
 def average_priority(tasks):
     """Return the average priority across all tasks."""
+    # Handle an empty list before attempting division.
+    if not tasks:
+        return 0
+
     total = 0
     for task in tasks:
         total += task["priority"]
+
     return total / len(tasks)
 
 

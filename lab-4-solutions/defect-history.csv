@@ -1,0 +1,13 @@
+Defect ID,Date,Status,Responsible Person,Notes
+DEF-001,2026-10-05,New,Motheo Mmolawa,TC-404 failed; first pending task omitted; recorded in commit bc2fb2c
+DEF-002,2026-10-05,New,Motheo Mmolawa,TC-406 failed; empty list raised ZeroDivisionError; recorded in commit bc2fb2c
+DEF-001,2026-10-05,Triaged,Motheo Mmolawa,Severity Medium; Priority High; incorrect pending-task result
+DEF-002,2026-10-05,Triaged,Motheo Mmolawa,Severity High; Priority High; calculation crashes on empty input
+DEF-001,2026-10-05,Assigned,Motheo Mmolawa,Assigned to Motheo Mmolawa to correct the pending-task loop
+DEF-002,2026-10-05,Assigned,Motheo Mmolawa,Assigned to Motheo Mmolawa to handle the empty-list case
+DEF-001,2026-10-05,Fixed,Motheo Mmolawa,Changed get_pending_tasks to examine every task; awaiting verification
+DEF-002,2026-10-05,Fixed,Motheo Mmolawa,Added an empty-list check to average_priority; awaiting verification
+DEF-001,2026-10-05,Verified,Motheo Mmolawa,TC-404 passed; all 11 Lab 4 tests and all 6 original tests passed
+DEF-002,2026-10-05,Verified,Motheo Mmolawa,TC-406 passed; all 11 Lab 4 tests and all 6 original tests passed
+DEF-001,2026-10-05,Closed,Motheo Mmolawa,Closed after successful verification; evidence in test-results-after-fixes.txt and regression-results.txt
+DEF-002,2026-10-05,Closed,Motheo Mmolawa,Closed after successful verification; evidence in test-results-after-fixes.txt and regression-results.txt
