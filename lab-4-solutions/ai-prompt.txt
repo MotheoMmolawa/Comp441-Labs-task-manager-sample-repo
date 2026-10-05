@@ -1,0 +1,35 @@
+Using only the requirements below, generate a requirements traceability\
+matrix for this Task Manager application.\
+\
+Include these columns:\
+\- Requirement ID\
+\- Requirement Description\
+\- Test Case ID(s)\
+\- Test Description\
+\- Test Level\
+\- Status\
+\
+Design at least one test case per requirement. Where a requirement\
+describes multiple behaviours, include tests for those behaviours.\
+\
+Assign unique test case IDs. Set every status to "Not Run" because\
+you have no execution evidence.\
+\
+Identify assumptions and ambiguities separately. Do not invent\
+additional requirements.\
+\
+Requirements:
+**# Draft Functional Requirements**
+
+**\*\*Status:\*\*** Student-derived draft. No official Lab 4 requirements document was included with the sample ZIP. These statements infer intended behaviour from the Task Manager's docstrings and existing tests. Review them with the TA before final submission.
+
+\| ID | Requirement | Assumption to confirm |
+\|---|---|---|
+\| REQ-001 | When given a title, \`add_task\` shall append a task with that title, a priority, tags, and \`done\` set to false. | Whether empty titles and invalid priorities must be rejected is unspecified. |
+\| REQ-002 | When given an ID that exists, \`complete_task\` shall mark that task done and return true. | None beyond the function's docstring. |
+\| REQ-003 | When given an ID that does not exist, \`complete_task\` shall return false and leave the task list unchanged. | The failure behaviour is inferred from the function's return value. |
+\| REQ-004 | \`get_pending_tasks\` shall return every task whose \`done\` value is false, including a task at the first list position. | Ordering should match the order in the input list. |
+\| REQ-005 | \`average_priority\` shall return the arithmetic mean of task priorities, and shall return 0 for an empty list. | The empty-list value is supported by an existing test expectation, although the current implementation fails it. |
+\| REQ-006 | \`find_task_by_title\` shall return the first task with an exact title match, or \`None\` when no task matches. | Matching is case-sensitive because that is what the current code implements. |
+\| REQ-007 | \`remove_task\` shall remove the task with the requested ID and leave other tasks unchanged. | Behaviour when the ID is absent should leave the list unchanged. |
+\| REQ-008 | \`save_tasks\` shall write the supplied task list so \`load_tasks\` can read it back; \`load_tasks\` shall return an empty list when the data file does not exist. | Malformed-file handling is unspecified. Tests should use a temporary directory/file. |
